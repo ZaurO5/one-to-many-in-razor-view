@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Zay-Shop.props" />
+</Project>
