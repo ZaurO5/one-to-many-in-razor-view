@@ -1,0 +1,32 @@
+﻿@using Zay_Shop.Areas.Admin.Models.Product
+@model ProductIndexVM
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Products</h1>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="Product">Create New Product</a>
+</div>
+
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <img src="~/@product.PhotoPath" class="card-img-top" alt="@product.Title" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Title</h5>
+                    <p class="card-text">@product.Size</p>
+                    <p class="text-muted">Price: @product.Price</p>
+                    <p class="text-muted">Created: @product.CreatedAt.ToString("dd:MM:yyyy HH:mm")</p>
+                    <p class="text-muted">Modified: @product.ModifiedAt</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-warning btn-sm" asp-controller="Product" asp-action="Update" asp-route-id="@product.Id">Update</a>
+
+                    <form method="post" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" onsubmit="return confirm('Are you sure?');" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>

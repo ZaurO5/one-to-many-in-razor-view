@@ -1,0 +1,29 @@
+﻿@using Zay_Shop.Areas.Admin.Models.Category
+@model CategoryIndexVM
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Categories</h1>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="Category">Create New Category</a>
+</div>
+
+<div class="row">
+    @foreach (var category in Model.Categories)
+    {
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@category.Name</h5>
+                    <p class="text-muted">Created: @category.CreatedAt.ToString("dd:MM:yyyy HH:mm")</p>
+                    <p class="text-muted">Modified: @category.ModifiedAt</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-warning btn-sm" asp-controller="Category" asp-action="Update" asp-route-id="@category.Id">Update</a>
+
+                    <form method="post" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" onsubmit="Are you sure?;" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿@using Zay_Shop.Areas.Admin.Models.Banner
+@model BannerIndexVM
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Banners</h1>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="Banner">Create New Banner</a>
+</div>
+
+<div class="row">
+    @foreach (var banner in Model.Banners)
+    {
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <img src="~/@banner.PhotoPath" class="card-img-top" alt="@banner.Title" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@banner.Title</h5>
+                    <p class="card-text">@banner.Description</p>
+                    <p class="text-muted">Created: @banner.CreatedAt.ToString("dd:MM:yyyy HH:mm")</p>
+                    <p class="text-muted">Modified: @banner.ModifiedAt</p>
+                </div>
+                <div class="card-footer text-center">
+                    <!-- Update Button -->
+                    <a class="btn btn-warning btn-sm" asp-controller="Banner" asp-action="Update" asp-route-id="@banner.Id">Update</a>
+
+                    <!-- Delete Button -->
+                    <form method="post" asp-controller="Banner" asp-action="Delete" asp-route-id="@banner.Id" onsubmit="return confirm('Are you sure?');" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+
+                    <!-- Activated/Deactivated Button -->
+                    <form method="post" asp-controller="Banner" asp-action="SetActive" asp-route-id="@banner.Id" class="d-inline">
+                        <button type="submit" class="btn @((banner.IsActive ? "btn-success" : "btn-secondary")) btn-sm">
+                            @(banner.IsActive ? "Activated" : "Deactivated")
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
