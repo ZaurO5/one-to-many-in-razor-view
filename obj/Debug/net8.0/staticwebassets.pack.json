@@ -7457,6 +7457,18 @@
       "PackagePath": "staticwebassets\\assets\\css\\templatemo.min.css"
     },
     {
+      "Id": "C:\\Users\\User\\source\\repos\\Zay-Shop\\Zay-Shop\\wwwroot\\assets\\img\\27c03c26-a5c2-48cf-9b80-834f6032727c_shop_05.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\27c03c26-a5c2-48cf-9b80-834f6032727c_shop_05.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\Zay-Shop\\Zay-Shop\\wwwroot\\assets\\img\\7b173809-a19f-49c6-ad51-8151825e6b72_shop_01.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\7b173809-a19f-49c6-ad51-8151825e6b72_shop_01.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\Zay-Shop\\Zay-Shop\\wwwroot\\assets\\img\\85536abf-35e4-464e-bcd3-7b0279529b25_shop_03.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\85536abf-35e4-464e-bcd3-7b0279529b25_shop_03.jpg"
+    },
+    {
       "Id": "C:\\Users\\User\\source\\repos\\Zay-Shop\\Zay-Shop\\wwwroot\\assets\\img\\about-hero.svg",
       "PackagePath": "staticwebassets\\assets\\img\\about-hero.svg"
     },
@@ -7507,6 +7519,10 @@
     {
       "Id": "C:\\Users\\User\\source\\repos\\Zay-Shop\\Zay-Shop\\wwwroot\\assets\\img\\category_img_03.jpg",
       "PackagePath": "staticwebassets\\assets\\img\\category_img_03.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\Zay-Shop\\Zay-Shop\\wwwroot\\assets\\img\\d441bde5-b0a6-4de6-b159-9aaa7f839c5f_shop_02.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\d441bde5-b0a6-4de6-b159-9aaa7f839c5f_shop_02.jpg"
     },
     {
       "Id": "C:\\Users\\User\\source\\repos\\Zay-Shop\\Zay-Shop\\wwwroot\\assets\\img\\favicon.ico",
@@ -7711,6 +7727,10 @@
     {
       "Id": "C:\\Users\\User\\source\\repos\\Zay-Shop\\Zay-Shop\\wwwroot\\assets\\webfonts\\slick.woff",
       "PackagePath": "staticwebassets\\assets\\webfonts\\slick.woff"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Zay-Shop.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Zay-Shop.Microsoft.AspNetCore.StaticWebAssets.props",

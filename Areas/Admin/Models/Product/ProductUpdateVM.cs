@@ -15,8 +15,8 @@ public class ProductUpdateVM
     [Required(ErrorMessage = "Size is required")]
     public string Size { get; set; }
 
-    [Required(ErrorMessage = "Image is required")]
-    public string PhotoPath { get; set; }
+    public string? PhotoName { get; set; }
+    public IFormFile? Photo { get; set; }
 
     [Required]
     [Display(Name = "Product Category")]

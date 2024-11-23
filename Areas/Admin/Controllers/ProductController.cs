@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Zay_Shop.Data;
 using Zay_Shop.Entities;
 using Zay_Shop.Areas.Admin.Models.Product;
+using Zay_Shop.Utilities.File;
 
 namespace Zay_Shop.Areas.Admin.Controllers;
 
@@ -12,11 +13,12 @@ namespace Zay_Shop.Areas.Admin.Controllers;
 public class ProductController : Controller
 {
     private readonly AppDbContext _context;
+    private readonly IFileService _fileService;
 
-
-    public ProductController(AppDbContext context)
+    public ProductController(AppDbContext context, IFileService fileService)
     {
         _context = context;
+        _fileService = fileService;
     }
 
     #region List
@@ -76,12 +78,20 @@ public class ProductController : Controller
             return View(model);
         }
 
+        if (!_fileService.IsImage(model.Photo.ContentType))
+            ModelState.AddModelError("Photo", "The image is not in the correct format");
+
+        if (!_fileService.IsTrueSize(model.Photo.Length))
+            ModelState.AddModelError("Photo", "Length must be less than 500 kb");
+
+        var photoName = _fileService.Upload(model.Photo, "assets/img");
+
         product = new Product
         {
             Title = model.Title,
-            PhotoPath = model.PhotoPath,
             Size = model.Size,
             Price = model.Price,
+            Photo = photoName,
             CategoryId = productCategory.Id
         };
 
@@ -103,9 +113,9 @@ public class ProductController : Controller
         var model = new ProductUpdateVM
         {
             Title = product.Title,
-            PhotoPath = product.PhotoPath,
             Size = product.Size,
             Price = product.Price,
+            PhotoName = product.Photo,
             CategoryId = product.CategoryId,
             Categories = _context.Categories.Select(pc => new SelectListItem
             {
@@ -140,11 +150,22 @@ public class ProductController : Controller
         if (productCategory is null) return NotFound();
 
         product.Title = model.Title;
-        product.PhotoPath = model.PhotoPath;
         product.Size = model.Size;
         product.Price = model.Price;
         product.CategoryId = productCategory.Id;
         product.ModifiedAt = DateTime.Now;
+
+        if (model.Photo is not null)
+        {
+            if (!_fileService.IsImage(model.Photo.ContentType))
+                ModelState.AddModelError("Photo", "The image is not in the correct format");
+
+            if (!_fileService.IsTrueSize(model.Photo.Length))
+                ModelState.AddModelError("Photo", "Length must be less than 500 kb");
+
+            _fileService.Delete("assets/img", product.Photo);
+            product.Photo = _fileService.Upload(model.Photo, "assets/img");
+        }
 
         _context.Products.Update(product);
         _context.SaveChanges();
@@ -164,6 +185,8 @@ public class ProductController : Controller
 
         _context.Products.Remove(product);
         _context.SaveChanges();
+
+        _fileService.Delete("assets/img", product.Photo);
 
         return RedirectToAction(nameof(Index));
     }

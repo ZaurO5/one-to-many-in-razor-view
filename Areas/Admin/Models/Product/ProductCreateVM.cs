@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using Zay_Shop.Entities;
 
 namespace Zay_Shop.Areas.Admin.Models.Product;
 
@@ -16,8 +17,8 @@ public class ProductCreateVM
     [Required(ErrorMessage = "Size is required")]
     public string Size { get; set; }
 
-    [Required(ErrorMessage = "Image is required")]
-    public string PhotoPath { get; set; }
+    [Required(ErrorMessage = "Photo is required")]
+    public IFormFile Photo { get; set; }
 
     [Required]
     [Display(Name = "Product Category")]
